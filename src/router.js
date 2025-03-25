@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import LoginPage from './views/LoginPage.vue';
-import RegisterPage from './views/RegisterPage.vue';
+import Login from '@/views/Login.vue';
+import Register from '@/views/Register.vue';
 
 const routes = [
-  { path: '/', redirect: '/login' }, // Default route
-  { path: '/login', component: LoginPage },
-  { path: '/register', component: RegisterPage },
+  { path: '/', component: Login },
+  { path: '/login', component: Login },
+  { path: '/register', component: Register },
 ];
 
 const router = createRouter({

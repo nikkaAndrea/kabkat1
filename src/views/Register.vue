@@ -31,7 +31,7 @@
           <img class="sangguniang-kabataan" alt="Sangguniang Kabataan Logo" :src="sangguniangKabataanLogoSvg" />
         </div>
 
-        <p class="welcome-kabataan-ng">Welcome, Kabataan ng Barangay Matain!</p>
+        <p class="welcome-kabataan-ng">Welcome, <br> Kabataan ng Barangay Matain!</p>
       </div>
     </div>
   </div>
@@ -39,11 +39,11 @@
 
 <script>
 export default {
-  name: "RegisterPage",
+  name: "Register",
   data() {
     return {
-      N1: require('@/assets/matainlogo.png'),
-      sangguniangKabataanLogoSvg: require('@/assets/sklogo.png'),
+      N1: new URL('@/assets/matainlogo.png', import.meta.url).href,
+      sangguniangKabataanLogoSvg: new URL('@/assets/sklogo.png', import.meta.url).href,
       name: '',
       email: '',
       password: '',
@@ -175,12 +175,12 @@ input {
 .welcome-kabataan-ng {
   position: absolute;
   top: 15px;
-  left: 0px;
+  left: 50px;
   font-weight: bold;
   color: #000;
   font-family: Lobster;
   font-size: 42px;
   width: 813px;
-  text-align: center;
+  text-align: left;
 }
 </style>
