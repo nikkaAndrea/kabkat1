@@ -19,7 +19,7 @@
       <hr class="divider" />
 
       <ul class="menu">
-        <router-link to="/dashboard" custom v-slot="{ navigate, isActive }">
+        <router-link to="/home" custom v-slot="{ navigate, isActive }">
           <li :class="['menu-item', { active: isActive }]" @click="navigate">
             <i class="fas fa-home"></i>
             <span>Home</span>

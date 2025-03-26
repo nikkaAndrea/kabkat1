@@ -81,7 +81,7 @@ export default {
         this.password === this.staticUser.password
       ) {
         localStorage.setItem("isLoggedIn", "true");
-        this.$router.push("/dashboard");
+        this.$router.push("/home");
       }
     },
     goToRegister() {
