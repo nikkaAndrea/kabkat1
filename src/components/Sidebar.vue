@@ -3,7 +3,7 @@
     <div class="sidebar">
       <div class="profile-section">
         <img src="../assets/sklogo.png" alt="Profile" class="profile-icon" />
-        <p class="username">Nikka Andrea Sagcal</p>
+        <p class="username">Sagcal, Nikka Andrea L.</p>
         <p class="position">KK Member</p>
 
         <div class="edit-profile">
