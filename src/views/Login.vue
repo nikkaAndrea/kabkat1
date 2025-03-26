@@ -7,25 +7,45 @@
 
           <form @submit.prevent="handleLogin" class="form-container">
             <label for="email">Email Address</label>
-            <input id="email" type="email" v-model="email" placeholder="Enter your email" required />
+            <input
+              id="email"
+              type="email"
+              v-model="email"
+              placeholder="Enter your email"
+              required
+            />
 
             <label for="password">Password</label>
-            <input id="password" type="password" v-model="password" placeholder="Enter your password" required />
+            <input
+              id="password"
+              type="password"
+              v-model="password"
+              placeholder="Enter your password"
+              required
+            />
 
             <button type="submit" class="login-button">Log In</button>
           </form>
 
-        <p class="new-on-our-platform">
-        New on our platform? <router-link to="/register">Create an Account</router-link>
-        </p>
+          <p class="new-on-our-platform">
+            New on our platform?
+            <router-link to="/register">Create an Account</router-link>
+          </p>
         </div>
 
         <div class="logo-container">
           <img class="element" alt="Matain Logo" :src="N1" />
-          <img class="sangguniang-kabataan" alt="Sangguniang Kabataan Logo" :src="sangguniangKabataanLogoSvg" />
+          <img
+            class="sangguniang-kabataan"
+            alt="Sangguniang Kabataan Logo"
+            :src="sangguniangKabataanLogoSvg"
+          />
         </div>
 
-        <p class="welcome-kabataan-ng">Welcome, <br> Kabataan ng Barangay Matain!</p>
+        <p class="welcome-kabataan-ng">
+          Welcome, <br />
+          Kabataan ng Barangay Matain!
+        </p>
       </div>
     </div>
   </div>
@@ -36,24 +56,38 @@ export default {
   name: "Login",
   data() {
     return {
-      N1: new URL('@/assets/matainlogo.png', import.meta.url).href,
-      sangguniangKabataanLogoSvg: new URL('@/assets/sklogo.png', import.meta.url).href,
-      email: '',
-      password: ''
+      N1: new URL("@/assets/matainlogo.png", import.meta.url).href,
+      sangguniangKabataanLogoSvg: new URL(
+        "@/assets/sklogo.png",
+        import.meta.url
+      ).href,
+      email: "",
+      password: "",
+      staticUser: {
+        email: "test@example.com",
+        password: "password123",
+      },
     };
   },
   methods: {
-  handleLogin() {
-    if (!this.email || !this.password) {
-      alert('Please enter your email and password.');
-      return;
-    }
-    alert(`Logging in as: ${this.email}`);
+    handleLogin() {
+      if (!this.email || !this.password) {
+        alert("Please enter your email and password.");
+        return;
+      }
+
+      if (
+        this.email === this.staticUser.email &&
+        this.password === this.staticUser.password
+      ) {
+        localStorage.setItem("isLoggedIn", "true");
+        this.$router.push("/dashboard");
+      }
+    },
+    goToRegister() {
+      this.$router.push("/register");
+    },
   },
-  goToRegister() {
-    this.$router.push('/register'); // Navigate to Register.vue
-  }
-},
 };
 </script>
 
@@ -85,7 +119,7 @@ export default {
 }
 
 .login-container {
-  background-color: #FFFFFFED;
+  background-color: #ffffffed;
   border-radius: 12px;
   padding: 24px;
   width: 310px;
@@ -164,7 +198,8 @@ input {
   gap: 20px;
 }
 
-.sangguniang-kabataan, .element {
+.sangguniang-kabataan,
+.element {
   width: 80px;
   height: 80px;
 }
