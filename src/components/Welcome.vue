@@ -12,5 +12,7 @@ export default {
 h1 {
   color: #000;
   font-size: 40px;
+  padding-top: 30px;
+  padding-left: 40px;
 }
 </style>
