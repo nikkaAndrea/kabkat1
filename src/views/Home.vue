@@ -13,6 +13,7 @@
         <div class="card" @click="showDetails('Announcement 1')">Announcement 1</div>
         <div class="card" @click="showDetails('Announcement 2')">Announcement 2</div>
         <div class="card" @click="showDetails('Announcement 3')">Announcement 3</div>
+        <div class="card" @click="showDetails('Announcement 3')">Announcement 4</div>
       </div>
     </div>
 
@@ -25,6 +26,7 @@
         <div class="card" @click="showDetails('Event 1')">Event 1</div>
         <div class="card" @click="showDetails('Event 2')">Event 2</div>
         <div class="card" @click="showDetails('Event 3')">Event 3</div>
+        <div class="card" @click="showDetails('Event 3')">Event 4</div>
       </div>
     </div>
   </div>
@@ -59,7 +61,7 @@ export default {
   background: #f8f9fa;
   border-radius: 5px;
   margin-left: 15px;
-  width: 1080px;
+  width: 1270px;
   overflow: hidden;
 }
 
