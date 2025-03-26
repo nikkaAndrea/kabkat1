@@ -64,7 +64,6 @@ export default {
 
 .clock {
   font-size: 16px;
-  font-weight: bold;
   color: #333;
 }
 
