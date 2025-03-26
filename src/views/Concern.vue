@@ -54,9 +54,8 @@ export default {
 <style scoped>
 .container {
   margin-left: 26%;
-  margin-top: 80px;
+  margin-top: 85px;
   height: 100%;
-  border-radius: 8px;
 }
 
 .concern-form {

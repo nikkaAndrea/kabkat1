@@ -48,10 +48,8 @@ export default {
 
 <style scoped>
 .container {
-  display: flex;
-  flex-direction: column;
   margin-left: 26%;
-  margin-top: 50px;
+  margin-top: 85px;
   height: 100%;
 }
 
