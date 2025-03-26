@@ -1,5 +1,5 @@
 <template>
-  <h1>Rise & Shine Matain Rising Star</h1>
+  <h1>Rise & Shine Matain Rising Star!</h1>
 </template>
 
 <script>
