@@ -103,7 +103,8 @@ export default {
           localStorage.removeItem("rememberedEmail");
         }
 
-        this.$router.push("/home");
+        // Redirect to admin landing page
+        this.$router.push("/admindashboard");
         return;
       }
 
@@ -121,6 +122,7 @@ export default {
           localStorage.removeItem("rememberedEmail");
         }
 
+        // Redirect to user landing page
         this.$router.push("/home");
         return;
       }

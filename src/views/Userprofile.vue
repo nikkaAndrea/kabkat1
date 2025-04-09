@@ -17,7 +17,7 @@
   import Title from "@/components/Title.vue";
   
   export default {
-    name: "Profile",
+    name: "Userprofile",
     components: {
       Title,
     },

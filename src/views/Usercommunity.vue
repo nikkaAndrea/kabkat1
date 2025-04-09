@@ -40,7 +40,7 @@
 import Title from "@/components/Title.vue";
 
 export default {
-  name: "Community",
+  name: "Usercommunity",
   components: {
     Title,
   },

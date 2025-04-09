@@ -1,18 +1,19 @@
 <template>
     <div class="container">
       <div class="title-page">
-        <Title />
+        <Admintitle />
+        <p>Overview Statistic</p>
       </div>
     </div>
   </template>
   
   <script>
-  import Title from "@/components/Title.vue"; 
+  import Admintitle from "@/components/Admintitle.vue"; 
   
   export default {
     name: "Admindashboard",
     components: {
-        Title,
+      Admintitle,
     },
   };
   </script>

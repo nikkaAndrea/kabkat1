@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Login from "./views/Login.vue";
 import Admindashboard from "./views/Admindashboard.vue";
-import Home from "./views/Home.vue";
-import Community from "./views/Community.vue";
-import Profile from "./views/Profile.vue";
+import Userhome from "./views/Userhome.vue";
+import Usercommunity from "./views/Usercommunity.vue";
+import Userprofile from "./views/Userprofile.vue";
 import Adminmember from "./views/Adminmember.vue";
 import Adminannouncement from "./views/Adminannouncement.vue";
 import Adminevents from "./views/Adminevents.vue";
@@ -15,9 +15,9 @@ const routes = [
   { path: '/login', component: Login },
 
   // Router ng User
-  { path: '/home', component: Home },
-  { path: '/community', component: Community },
-  { path: '/profile', component: Profile },
+  { path: '/Userhome', component: Userhome },
+  { path: '/Usercommunity', component: Usercommunity },
+  { path: '/Userprofile', component: Userprofile },
 
   // Router ng Admin
   { path: '/admindashboard', component: Admindashboard },

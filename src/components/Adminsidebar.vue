@@ -96,7 +96,6 @@ export default {
   width: 120px;
   height: 120px;
   padding: 0;
-  border: 5px solid #4763d9;
   margin-bottom: 20px;
 }
 

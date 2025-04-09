@@ -1,18 +1,18 @@
 <template>
     <div class="container">
       <div class="title-page">
-        <Title />
+        <Admintitle />
       </div>
     </div>
   </template>
   
   <script>
-  import Title from "@/components/Title.vue"; 
+  import Admintitle from "@/components/Admintitle.vue"; 
   
   export default {
     name: "Adminconcern",
     components: {
-        Title,
+      Admintitle,
     },
   };
   </script>
