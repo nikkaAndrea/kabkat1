@@ -12,7 +12,7 @@
                 id="email"
                 type="email"
                 v-model="email"
-                placeholder="Enter your email"
+                placeholder="Input your email"
                 required
               />
             </div>
@@ -23,7 +23,7 @@
                 id="password"
                 type="password"
                 v-model="password"
-                placeholder="Enter your password"
+                placeholder="Input your password"
                 required
               />
             </div>
@@ -65,9 +65,13 @@ export default {
       email: "",
       password: "",
       rememberMe: false,
+      staticAdmin: {
+        email: "admin@example.com",
+        password: "admin123",
+      },
       staticUser: {
-        email: "test@example.com",
-        password: "password123",
+        email: "user@example.com",
+        password: "user123",
       },
     };
   },
@@ -79,31 +83,52 @@ export default {
     }
   },
   methods: {
-  handleLogin() {
-    if (!this.email || !this.password) {
-      alert("Please enter your email and password.");
-      return;
-    }
-
-    if (
-      this.email === this.staticUser.email &&
-      this.password === this.staticUser.password
-    ) {
-      localStorage.setItem("isLoggedIn", "true");
-
-      if (this.rememberMe) {
-        localStorage.setItem("rememberedEmail", this.email);
-      } else {
-        localStorage.removeItem("rememberedEmail");
+    handleLogin() {
+      if (!this.email || !this.password) {
+        alert("Please enter your email and password.");
+        return;
       }
 
-      this.$router.push("/dashboard");
-    } else {
+      // Check for admin credentials
+      if (
+        this.email === this.staticAdmin.email &&
+        this.password === this.staticAdmin.password
+      ) {
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("accountType", "admin");
+
+        if (this.rememberMe) {
+          localStorage.setItem("rememberedEmail", this.email);
+        } else {
+          localStorage.removeItem("rememberedEmail");
+        }
+
+        this.$router.push("/home");
+        return;
+      }
+
+      // Check for user credentials
+      if (
+        this.email === this.staticUser.email &&
+        this.password === this.staticUser.password
+      ) {
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("accountType", "user");
+
+        if (this.rememberMe) {
+          localStorage.setItem("rememberedEmail", this.email);
+        } else {
+          localStorage.removeItem("rememberedEmail");
+        }
+
+        this.$router.push("/home");
+        return;
+      }
+
+      // Invalid credentials
       alert("Invalid email or password.");
-    }
+    },
   },
-}
-,
 };
 </script>
 

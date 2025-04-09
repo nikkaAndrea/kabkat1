@@ -2,8 +2,6 @@
   <nav class="navbar">
     <div class="navbar-content">
       <div class="clock">{{ currentDate }}</div>
-
-
       <button class="logout-btn" @click="handleLogout">
         <i class="fas fa-sign-out-alt"></i>
       </button>
@@ -12,6 +10,8 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
+
 export default {
   data() {
     return {
@@ -32,9 +32,22 @@ export default {
       }, 60000);
     },
     handleLogout() {
-      localStorage.setItem("isLoggedIn", "false"); // Ensure localStorage is updated
-      window.dispatchEvent(new Event("storage")); // Trigger the storage event
-      this.$router.push("/login");
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You will be logged out of your account.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#4763d9",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, logout",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          localStorage.removeItem("isLoggedIn");
+          localStorage.removeItem("accountType");
+          window.dispatchEvent(new Event("storage"));
+          this.$router.push("/login");
+        }
+      });
     },
   },
 };

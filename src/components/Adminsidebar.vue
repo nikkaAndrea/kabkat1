@@ -3,33 +3,51 @@
     <div class="sidebar">
       <div class="profile-section">
         <img src="../assets/Sk_Logo.png" alt="Profile" class="profile-icon" />
-        <p class="username">Sagcal, Nikka Andrea L.</p>
-        <p class="position">KK Member</p>
 
-        <div class="edit-profile">
-          <router-link to="/profile">
-            <span class="btn">
-              <i class="fas fa-user-edit"></i>
-              Edit Profile
-            </span>
-          </router-link>
-        </div>
       </div>
 
       <hr class="divider" />
 
       <ul class="menu">
-        <router-link to="/home" custom v-slot="{ navigate, isActive }">
+        <router-link to="/admindashboard" custom v-slot="{ navigate, isActive }">
           <li :class="['menu-item', { active: isActive }]" @click="navigate">
-            <i class="fas fa-home"></i>
-            <span>Home</span>
+            <i class="fas fa-tachometer-alt"></i>
+            <span>KK Dashboard</span>
           </li>
         </router-link>
 
-        <router-link to="/community" custom v-slot="{ navigate, isActive }">
+        <router-link to="/adminmember" custom v-slot="{ navigate, isActive }">
+          <li :class="['menu-item', { active: isActive }]" @click="navigate">
+            <i class="fas fa-users"></i>
+            <span>KK Member</span>
+          </li>
+        </router-link>
+
+        <router-link to="/adminaccouncement" custom v-slot="{ navigate, isActive }">
+          <li :class="['menu-item', { active: isActive }]" @click="navigate">
+            <i class="fas fa-bullhorn"></i>
+            <span>Announcement</span>
+          </li>
+        </router-link>
+
+        <router-link to="/adminevents" custom v-slot="{ navigate, isActive }">
+          <li :class="['menu-item', { active: isActive }]" @click="navigate">
+            <i class="fas fa-calendar-alt"></i>
+            <span>Events</span>
+          </li>
+        </router-link>
+
+        <router-link to="/adminconcern" custom v-slot="{ navigate, isActive }">
           <li :class="['menu-item', { active: isActive }]" @click="navigate">
             <i class="fas fa-chart-pie"></i>
             <span>Community Concern</span>
+          </li>
+        </router-link>
+
+        <router-link to="/adminmanagement" custom v-slot="{ navigate, isActive }">
+          <li :class="['menu-item', { active: isActive }]" @click="navigate">
+            <i class="fas fa-user-cog"></i>
+            <span>User Management</span>
           </li>
         </router-link>
       </ul>
@@ -39,7 +57,7 @@
 
 <script>
 export default {
-  name: "Sidebar",
+  name: "Adminsidebar",
 };
 </script>
 
@@ -64,12 +82,12 @@ export default {
   color: #000;
 }
 
-.profile-section p{
+.profile-section p {
   padding: 0;
   margin: 0;
 }
 
-.position{
+.position {
   font-size: 14px;
   font-weight: normal;
 }
@@ -88,7 +106,6 @@ export default {
   align-items: center;
   margin: 20px 0;
 }
-
 
 .edit-profile .btn {
   color: black;
