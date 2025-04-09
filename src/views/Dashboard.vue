@@ -1,30 +1,14 @@
 <template>
-    <div class="container">
-      <div class="title-page">
-        <Welcome />
-      </div>
-
-      <script>
-import Welcome from "@/components/Welcome.vue";
-
-export default {
-  name: "Dashboard",
-  components: {
-    Welcome,
-  },
-  data() {
-    return {
-    }
-}
-}
-</script>
-</div>
-</template>
-
-<style scoped>
-.container {
-  margin-left: 26%;
-  margin-top: 85px;
-  height: 100%;
-}
-</style>
+    <div>
+      <h1>Welcome to the User Dashboard</h1>
+    </div>
+  </template>
+  
+  <script>
+  export default {
+    name: "dashboard",
+  };
+  </script>
+  
+  <style scoped>
+  </style>

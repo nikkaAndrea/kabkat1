@@ -1,48 +1,54 @@
 <template>
-  <div class="LOGIN">
-    <div class="overlap-group-wrapper">
-      <div class="overlap-group">
-        <div class="login-container">
-          <h1 class="text-wrapper">Log In</h1>
+  <div class="login-page">
+    <div class="background-wrapper">
+      <div class="background">
+        <div class="login-box">
+          <h1 class="title">Please Login</h1>
 
-          <form @submit.prevent="handleLogin" class="form-container">
-            <label for="email">Email Address</label>
-            <input
-              id="email"
-              type="email"
-              v-model="email"
-              placeholder="Enter your email"
-              required
-            />
+          <form @submit.prevent="handleLogin" class="form">
+            <div class="input-group">
+              <i class="fas fa-envelope icon"></i>
+              <input
+                id="email"
+                type="email"
+                v-model="email"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
 
-            <label for="password">Password</label>
-            <input
-              id="password"
-              type="password"
-              v-model="password"
-              placeholder="Enter your password"
-              required
-            />
+            <div class="input-group">
+              <i class="fas fa-key icon"></i>
+              <input
+                id="password"
+                type="password"
+                v-model="password"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
 
-            <button type="submit" class="login-button">Log In</button>
+            <div class="remember-me">
+              <input type="checkbox" id="remember" v-model="rememberMe" />
+              <label for="remember">Remember Me</label>
+            </div>
+
+            <button type="submit" class="submit-btn">Log In</button>
           </form>
 
-          <p class="new-on-our-platform">
+          <p class="signup-link">
             New on our platform?
             <router-link to="/register">Create an Account</router-link>
           </p>
         </div>
 
-        <div class="logo-container">
-          <img class="element" alt="Matain Logo" :src="N1" />
-          <img
-            class="sangguniang-kabataan"
-            alt="Sangguniang Kabataan Logo"
-            :src="sangguniangKabataanLogoSvg"
-          />
+        <div class="logos">
+          <img class="nyc-logo" alt="NYC Logo" src="/src/assets/NYC_Logo.png" />
+          <img class="matain-logo" alt="Matain Logo" src="/src/assets/Matain_Logo.png" />
+          <img class="sk-logo" alt="Sangguniang Kabataan Logo" src="/src/assets/Sk_Logo.png" />
         </div>
 
-        <p class="welcome-kabataan-ng">
+        <p class="welcome-text">
           Welcome, <br />
           Kabataan ng Barangay Matain!
         </p>
@@ -56,59 +62,68 @@ export default {
   name: "Login",
   data() {
     return {
-      N1: new URL("@/assets/matainlogo.png", import.meta.url).href,
-      sangguniangKabataanLogoSvg: new URL(
-        "@/assets/sklogo.png",
-        import.meta.url
-      ).href,
       email: "",
       password: "",
+      rememberMe: false,
       staticUser: {
         email: "test@example.com",
         password: "password123",
       },
     };
   },
+  mounted() {
+    const savedEmail = localStorage.getItem("rememberedEmail");
+    if (savedEmail) {
+      this.email = savedEmail;
+      this.rememberMe = true;
+    }
+  },
   methods: {
-    handleLogin() {
-      if (!this.email || !this.password) {
-        alert("Please enter your email and password.");
-        return;
+  handleLogin() {
+    if (!this.email || !this.password) {
+      alert("Please enter your email and password.");
+      return;
+    }
+
+    if (
+      this.email === this.staticUser.email &&
+      this.password === this.staticUser.password
+    ) {
+      localStorage.setItem("isLoggedIn", "true");
+
+      if (this.rememberMe) {
+        localStorage.setItem("rememberedEmail", this.email);
+      } else {
+        localStorage.removeItem("rememberedEmail");
       }
 
-      if (
-        this.email === this.staticUser.email &&
-        this.password === this.staticUser.password
-      ) {
-        localStorage.setItem("isLoggedIn", "true");
-        this.$router.push("/home");
-      }
-    },
-    goToRegister() {
-      this.$router.push("/register");
-    },
+      this.$router.push("/dashboard");
+    } else {
+      alert("Invalid email or password.");
+    }
   },
+}
+,
 };
 </script>
 
 <style scoped>
-.LOGIN {
+.login-page {
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
   height: 100vh;
   width: 100%;
 }
 
-.overlap-group-wrapper {
+.background-wrapper {
   background-color: #f5f3c7;
   height: 100vh;
   width: 100%;
 }
 
-.overlap-group {
-  background-image: url(@/assets/loginbg.jpg);
+.background {
+  background-image: url(@/assets/Login_Background.jpg);
   background-position: center;
   background-size: cover;
   height: 100vh;
@@ -118,79 +133,97 @@ export default {
   position: relative;
 }
 
-.login-container {
-  background-color: #ffffffed;
+.login-box {
+  background-color: #ffffff;
   border-radius: 12px;
-  padding: 24px;
-  width: 310px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  padding: 30px;
+  width: 20%;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   text-align: center;
 }
 
-.text-wrapper {
-  font-size: 32px;
+.title {
+  font-size: 22px;
   font-weight: bold;
   color: #000;
-  font-family: Alef;
+  margin-bottom: 40px;
 }
 
-.sub-text {
-  font-size: 16px;
-  color: #555;
-  margin-bottom: 16px;
-}
-
-.form-container {
+.form {
   display: flex;
   flex-direction: column;
   gap: 13px;
   text-align: left;
 }
 
-label {
+.input-group {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-left: 5px solid #1c54a1;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.input-group .icon {
+  padding: 10px;
+  color: #ccc;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 20px 10px;
+  border: none;
+  outline: none;
   font-size: 14px;
-  font-weight: 500;
+  border-radius: 0;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: 14px;
   color: #333;
 }
 
-input {
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-}
-
-.login-button {
-  padding: 8px;
-  background-color: #007bff;
-  color: white;
+.submit-btn {
+  padding: 15px 5px;
+  background-color: #1c54a1;
+  color: #ffffff;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
-  margin-top: 10px;
 }
 
-.login-button:hover {
+.submit-btn:hover {
   background-color: #0056b3;
 }
 
-.new-on-our-platform {
+.signup-link {
   font-size: 14px;
   margin-top: 16px;
 }
 
-.new-on-our-platform a {
+.signup-link a {
   color: #007bff;
   text-decoration: none;
   font-weight: 600;
 }
 
-.new-on-our-platform a:hover {
+.signup-link a:hover {
   text-decoration: underline;
 }
 
-.logo-container {
+.logos {
   position: absolute;
   top: 35px;
   right: 40px;
@@ -198,13 +231,14 @@ input {
   gap: 20px;
 }
 
-.sangguniang-kabataan,
-.element {
+.nyc-logo,
+.matain-logo,
+.sk-logo {
   width: 80px;
   height: 80px;
 }
 
-.welcome-kabataan-ng {
+.welcome-text {
   position: absolute;
   top: 15px;
   left: 50px;

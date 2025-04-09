@@ -1,9 +1,5 @@
 <template>
-  <div :class="{ 'full-screen': !isLoggedIn }">
-    <Header v-if="isLoggedIn" />
-    <Sidebar v-if="isLoggedIn" />
     <router-view />
-  </div>
 </template>
 
 <script>
@@ -23,7 +19,6 @@ export default {
 
     watchEffect(() => {
       isLoggedIn.value = localStorage.getItem("isLoggedIn") === "true";
-
       if (!isLoggedIn.value) {
         router.push("/login");
       }
