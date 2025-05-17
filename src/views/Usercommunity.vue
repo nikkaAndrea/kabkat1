@@ -1,52 +1,40 @@
 <template>
   <div class="container">
     <div class="title-page">
-      <Title />
+      <h1>Community Concerns</h1>
     </div>
 
-    <div class="section">
-      <div class="section-title">
-        📰 Recent Announcements
-        <a href="/announcements" class="view-more">View all</a>
-      </div>
-      <div class="grid-container">
-        <div
-          class="card"
-          @click="showDetails('Water Service Interruption - April 10')"
-        >
-          Water Service Interruption - April 10
-        </div>
-        <div
-          class="card"
-          @click="showDetails('Scheduled Power Outage - April 12')"
-        >
-          Scheduled Power Outage - April 12
-        </div>
-        <div
-          class="card"
-          @click="showDetails('Barangay Clean-Up Drive - April 15')"
-        >
-          Barangay Clean-Up Drive - April 15
-        </div>
-        <div class="card" @click="showDetails('Community Meeting - April 20')">
-          Community Meeting - April 20
-        </div>
+    <div class="content">
+      <textarea
+        class="comment-box"
+        placeholder="Write your concern here..."
+        v-model="comment"
+        rows="6"
+      ></textarea>
+
+      <div class="button-wrapper">
+        <button class="submit-button" @click="submitComment">Submit</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Title from "@/components/Title.vue";
-
 export default {
   name: "Usercommunity",
-  components: {
-    Title,
+  data() {
+    return {
+      comment: "",
+    };
   },
   methods: {
-    showDetails(item) {
-      alert(`Showing details for: ${item}`);
+    submitComment() {
+      if (this.comment.trim()) {
+        alert(`Comment submitted: ${this.comment}`);
+        this.comment = "";
+      } else {
+        alert("Please write a comment before submitting.");
+      }
     },
   },
 };
@@ -54,58 +42,59 @@ export default {
 
 <style scoped>
 .container {
-  margin-left: 17%;
-  margin-top: 85px;
-  height: 100vh;
+  margin-left: 18%;
+  margin-top: 120px;
+  padding-bottom: 50px;
+  min-height: 100vh;
 }
 
-.section {
-  margin-top: 20px;
-  background: #f8f9fa;
-  border-radius: 5px;
-  margin-left: 15px;
+.title-page {
+  color: #4764d9;
+}
+
+.content {
   width: 97%;
-  overflow: hidden;
-}
-
-.section-title {
-  font-size: 18px;
-  font-weight: bold;
-  padding: 10px;
-  background: #4763d9;
-  text-align: left;
-  border-radius: 5px 5px 0 0;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  color: #fff;
-}
-
-.view-more {
-  font-size: 12px;
-  color: #fff;
-  text-decoration: none;
-  margin-right: 10px;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 10px;
-  padding: 10px;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-.card {
-  padding: 15px;
-  background: white;
+  gap: 15px;
+  background-color: #fff;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  font-size: 16px;
-  cursor: pointer;
+  border: 1px solid #ccc;
+}
+
+.comment-box {
+  margin-top: 20px;
   width: 100%;
+  max-width: 600px;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  resize: vertical;
   box-sizing: border-box;
+}
+
+.button-wrapper {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  justify-content: center;
+}
+
+.submit-button {
+  padding: 10px 30px;
+  font-size: 16px;
+  border: none;
+  background-color: #4764d9;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.submit-button:hover {
+  background-color: #3750b3;
 }
 </style>

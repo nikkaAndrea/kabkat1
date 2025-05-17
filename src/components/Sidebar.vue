@@ -1,62 +1,77 @@
 <template>
   <div>
     <div class="sidebar">
-      <div class="profile-section">
-        <img src="../assets/Sk_Logo.png" alt="Profile" class="profile-icon" />
-        <p class="username">Sagcal, Nikka Andrea L.</p>
-        <p class="position">KK Member</p>
-
-        <div class="edit-profile">
-          <router-link to="/profile">
-            <span class="btn">
-              <i class="fas fa-user-edit"></i>
-              Edit Profile
-            </span>
-          </router-link>
-        </div>
-      </div>
-
-      <hr class="divider" />
-
       <ul class="menu">
-        <router-link to="/home" custom v-slot="{ navigate, isActive }">
+        <router-link to="/Userhome" custom v-slot="{ navigate, isActive }">
           <li :class="['menu-item', { active: isActive }]" @click="navigate">
             <i class="fas fa-home"></i>
-            <span>Home</span>
+            <span>Dashboard</span>
           </li>
         </router-link>
 
-        <router-link to="/community" custom v-slot="{ navigate, isActive }">
+        <router-link to="/Usercommunity" custom v-slot="{ navigate, isActive }">
           <li :class="['menu-item', { active: isActive }]" @click="navigate">
             <i class="fas fa-chart-pie"></i>
-            <span>Community Concern</span>
+            <span>Community</span>
           </li>
         </router-link>
+
+        <router-link to="/Userprofile" custom v-slot="{ navigate, isActive }">
+          <li :class="['menu-item', { active: isActive }]" @click="navigate">
+            <i class="fas fa-user"></i>
+            <span>Setting</span>
+          </li>
+        </router-link>
+
+        <li class="menu-item logout" @click="handleLogout">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Log out</span>
+        </li>
       </ul>
     </div>
   </div>
 </template>
 
 <script>
+import Swal from "sweetalert2";
+
 export default {
   name: "Sidebar",
+  methods: {
+    handleLogout() {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You will be logged out of your account.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#4763d9",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, logout",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          localStorage.removeItem("isLoggedIn");
+          localStorage.removeItem("accountType");
+          window.dispatchEvent(new Event("storage"));
+          this.$router.push("/login");
+        }
+      });
+    },
+  },
 };
 </script>
 
 <style scoped>
 .sidebar {
-  width: 270px;
+  width: 300px;
   height: 100%;
   background-color: #ffffff;
-  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 2;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-right: 1px solid #ccc;
 }
 
 .profile-section {
@@ -64,22 +79,22 @@ export default {
   color: #000;
 }
 
-.profile-section p{
+.profile-section p {
   padding: 0;
   margin: 0;
 }
 
-.position{
+.position {
   font-size: 14px;
   font-weight: normal;
 }
 
 .profile-icon {
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   padding: 0;
-  border: 5px solid #4763d9;
-  margin-bottom: 20px;
+  margin-left: -140px;
+  margin-top: 20px;
 }
 
 .edit-profile {
@@ -88,7 +103,6 @@ export default {
   align-items: center;
   margin: 20px 0;
 }
-
 
 .edit-profile .btn {
   color: black;
@@ -108,32 +122,17 @@ export default {
   color: #4763d9;
 }
 
-.divider {
-  border: 0;
-  height: 2px;
-  background-color: gray;
-  width: 100%;
-  margin-top: 10px;
-}
-
 p {
   margin-top: 10px;
   font-size: 16px;
   font-weight: bold;
 }
 
-hr {
-  border: 0;
-  height: 1px;
-  background-color: white;
-  width: 100%;
-  margin-top: 10px;
-}
-
 .menu {
   list-style: none;
   padding: 0;
   width: 100%;
+  margin-top: 110px;
 }
 
 a {
@@ -144,18 +143,30 @@ a {
   display: flex;
   align-items: center;
   gap: 20px;
-  color: #000;
-  padding: 10px 15px;
+  color: #424242;
+  padding: 20px;
   cursor: pointer;
-  border-radius: 5px;
   transition: 0.3s;
   list-style: none;
-  margin: 5px;
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.menu-item i {
+  font-size: 20px;
+  width: 20px;
+  text-align: center;
+}
+
+.menu-item span {
+  flex-grow: 1;
 }
 
 .menu-item:hover,
 .menu-item.active {
-  color: #fff;
-  background-color: #4763d9;
+  color: #4763d9;
+  background-color: #e6eaf6;
+  border-right: 5px solid #4763d9;
 }
 </style>

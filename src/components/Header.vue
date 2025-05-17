@@ -1,17 +1,19 @@
 <template>
   <nav class="navbar">
     <div class="navbar-content">
+      <div class="profile-wrapper">
+        <img src="../assets/Sk_Logo.png" alt="Profile" class="profile-pic" />
+        <div class="profile-info">
+          <div class="name">Ryan Joshua E. Bueno</div>
+          <div class="position">IT Intern</div>
+        </div>
+      </div>
       <div class="clock">{{ currentDate }}</div>
-      <button class="logout-btn" @click="handleLogout">
-        <i class="fas fa-sign-out-alt"></i>
-      </button>
     </div>
   </nav>
 </template>
 
 <script>
-import Swal from "sweetalert2";
-
 export default {
   data() {
     return {
@@ -31,24 +33,6 @@ export default {
         this.currentDate = this.getFormattedDate();
       }, 60000);
     },
-    handleLogout() {
-      Swal.fire({
-        title: "Are you sure?",
-        text: "You will be logged out of your account.",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#4763d9",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, logout",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          localStorage.removeItem("isLoggedIn");
-          localStorage.removeItem("accountType");
-          window.dispatchEvent(new Event("storage"));
-          this.$router.push("/login");
-        }
-      });
-    },
   },
 };
 </script>
@@ -56,8 +40,8 @@ export default {
 <style scoped>
 .navbar {
   width: 100%;
-  height: 50px;
-  background-color: #fff;
+  height: 70px;
+  background-color: #e6eaf6;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -66,31 +50,50 @@ export default {
   top: 0;
   left: 0;
   z-index: 1;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-bottom: 1px solid #ccc;
 }
 
 .navbar-content {
   display: flex;
   align-items: center;
-  gap: 15px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.profile-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-pic {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.position {
+  font-size: 14px;
+  color: #666;
 }
 
 .clock {
   font-size: 16px;
   color: #333;
+  margin-right: 50px;
 }
 
-.logout-btn {
-  margin-right: 40px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 30px;
-  color: #333;
-  transition: 0.3s;
-}
-
-.logout-btn:hover {
-  color: red;
-}
 </style>
