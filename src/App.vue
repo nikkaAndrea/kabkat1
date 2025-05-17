@@ -1,8 +1,11 @@
 <template>
   <div :class="{ 'full-screen': !isLoggedIn }">
-    <Header v-if="isLoggedIn" />
-    <Adminsidebar v-if="isLoggedIn && isAdmin" />
-    <Sidebar v-if="isLoggedIn && !isAdmin" />
+    <template v-if="isLoggedIn">
+      <Adminheader v-if="isAdmin" />
+      <Header v-else />
+      <Adminsidebar v-if="isAdmin" />
+      <Sidebar v-else />
+    </template>
     <router-view />
   </div>
 </template>
@@ -11,6 +14,7 @@
 import Sidebar from "@/components/Sidebar.vue";
 import Adminsidebar from "@/components/Adminsidebar.vue";
 import Header from "@/components/Header.vue";
+import Adminheader from "@/components/Adminheader.vue";
 import { ref, watchEffect } from "vue";
 import { useRouter } from "vue-router";
 
@@ -19,6 +23,7 @@ export default {
     Sidebar,
     Adminsidebar,
     Header,
+    Adminheader,
   },
   setup() {
     const router = useRouter();

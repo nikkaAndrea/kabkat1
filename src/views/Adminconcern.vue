@@ -1,26 +1,31 @@
 <template>
     <div class="container">
       <div class="title-page">
-        <Admintitle />
+        <h1>Community Concerns</h1>
       </div>
     </div>
   </template>
   
   <script>
-  import Admintitle from "@/components/Admintitle.vue"; 
   
   export default {
     name: "Adminconcern",
-    components: {
-      Admintitle,
-    },
   };
   </script>
   
   <style scoped>
-  .container {
-    margin-left: 17%;
-    margin-top: 85px;
-    height: 100vh
-  }
+.container {
+  margin-left: 18%;
+  margin-top: 120px;
+  padding-bottom: 50px;
+  min-height: 100vh;
+}
+
+.title-page {
+  color: #4764d9;
+}
+
+.content {
+  width: 97%;
+}
   </style>

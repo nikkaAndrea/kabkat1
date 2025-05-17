@@ -1,12 +1,6 @@
 <template>
   <div>
     <div class="sidebar">
-      <div class="profile-section">
-        <img src="../assets/Sk_Logo.png" alt="Profile" class="profile-icon" />
-
-      </div>
-
-      <hr class="divider" />
 
       <ul class="menu">
         <router-link to="/admindashboard" custom v-slot="{ navigate, isActive }">
@@ -50,6 +44,11 @@
             <span>User Management</span>
           </li>
         </router-link>
+
+        <li class="menu-item logout" @click="handleLogout">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Log out</span>
+        </li>
       </ul>
     </div>
   </div>
@@ -58,23 +57,41 @@
 <script>
 export default {
   name: "Adminsidebar",
+  methods: {
+    handleLogout() {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You will be logged out of your account.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#4763d9",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, logout",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          localStorage.removeItem("isLoggedIn");
+          localStorage.removeItem("accountType");
+          window.dispatchEvent(new Event("storage"));
+          this.$router.push("/login");
+        }
+      });
+    },
+  },
 };
 </script>
 
 <style scoped>
 .sidebar {
-  width: 270px;
+  width: 300px;
   height: 100%;
   background-color: #ffffff;
-  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 2;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-right: 1px solid #ccc;
 }
 
 .profile-section {
@@ -93,10 +110,11 @@ export default {
 }
 
 .profile-icon {
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   padding: 0;
-  margin-bottom: 20px;
+  margin-left: -140px;
+  margin-top: 20px;
 }
 
 .edit-profile {
@@ -124,32 +142,17 @@ export default {
   color: #4763d9;
 }
 
-.divider {
-  border: 0;
-  height: 2px;
-  background-color: gray;
-  width: 100%;
-  margin-top: 10px;
-}
-
 p {
   margin-top: 10px;
   font-size: 16px;
   font-weight: bold;
 }
 
-hr {
-  border: 0;
-  height: 1px;
-  background-color: white;
-  width: 100%;
-  margin-top: 10px;
-}
-
 .menu {
   list-style: none;
   padding: 0;
   width: 100%;
+  margin-top: 110px;
 }
 
 a {
@@ -160,18 +163,30 @@ a {
   display: flex;
   align-items: center;
   gap: 20px;
-  color: #000;
-  padding: 10px 15px;
+  color: #424242;
+  padding: 20px;
   cursor: pointer;
-  border-radius: 5px;
   transition: 0.3s;
   list-style: none;
-  margin: 5px;
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.menu-item i {
+  font-size: 20px;
+  width: 20px;
+  text-align: center;
+}
+
+.menu-item span {
+  flex-grow: 1;
 }
 
 .menu-item:hover,
 .menu-item.active {
-  color: #fff;
-  background-color: #4763d9;
+  color: #4763d9;
+  background-color: #e6eaf6;
+  border-right: 5px solid #4763d9;
 }
 </style>
