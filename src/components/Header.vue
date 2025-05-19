@@ -4,8 +4,8 @@
       <div class="profile-wrapper">
         <img src="../assets/Sk_Logo.png" alt="Profile" class="profile-pic" />
         <div class="profile-info">
-          <div class="name">Justine Santos</div>
-          <div class="position">SK Chairman</div>
+          <div class="name">Nikka Andrea L. Sagcal</div>
+          <div class="position">KK Member</div>
         </div>
       </div>
       <div class="clock">{{ currentDate }}</div>
