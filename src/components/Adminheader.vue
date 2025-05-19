@@ -4,7 +4,7 @@
       <div class="profile-wrapper">
         <img src="../assets/Sk_Logo.png" alt="Profile" class="profile-pic" />
         <div class="profile-info">
-          <div class="name">Ryan Joshua E. Bueno</div>
+          <div class="name">Justine E. Santos</div>
         </div>
       </div>
       <div class="clock">{{ currentDate }}</div>
@@ -79,18 +79,18 @@ export default {
 }
 
 .name {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   color: #333;
 }
 
 .position {
-  font-size: 14px;
+  font-size: 16px;
   color: #666;
 }
 
 .clock {
-  font-size: 16px;
+  font-size: 20px;
   color: #333;
   margin-right: 50px;
 }
