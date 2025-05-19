@@ -55,10 +55,13 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
+
 export default {
   name: "Adminsidebar",
   methods: {
     handleLogout() {
+      console.log("Logout clicked"); // Debug log
       Swal.fire({
         title: "Are you sure?",
         text: "You will be logged out of your account.",
@@ -69,6 +72,7 @@ export default {
         confirmButtonText: "Yes, logout",
       }).then((result) => {
         if (result.isConfirmed) {
+          console.log("Confirmed logout"); // Debug log
           localStorage.removeItem("isLoggedIn");
           localStorage.removeItem("accountType");
           window.dispatchEvent(new Event("storage"));
