@@ -74,60 +74,6 @@ export default {
   border-right: 1px solid #ccc;
 }
 
-.profile-section {
-  text-align: center;
-  color: #000;
-}
-
-.profile-section p {
-  padding: 0;
-  margin: 0;
-}
-
-.position {
-  font-size: 14px;
-  font-weight: normal;
-}
-
-.profile-icon {
-  width: 100px;
-  height: 100px;
-  padding: 0;
-  margin-left: -140px;
-  margin-top: 20px;
-}
-
-.edit-profile {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 0;
-}
-
-.edit-profile .btn {
-  color: black;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  text-decoration: none;
-}
-
-.edit-profile .btn i {
-  color: black;
-}
-
-.edit-profile .btn:hover {
-  text-decoration: underline;
-  color: #4763d9;
-}
-
-p {
-  margin-top: 10px;
-  font-size: 16px;
-  font-weight: bold;
-}
-
 .menu {
   list-style: none;
   padding: 0;
@@ -147,9 +93,7 @@ a {
   padding: 20px;
   cursor: pointer;
   transition: 0.3s;
-  list-style: none;
   font-size: 16px;
-  line-height: 1.4;
   font-weight: 500;
 }
 
