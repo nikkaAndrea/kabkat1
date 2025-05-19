@@ -1,14 +1,14 @@
 <template>
   <div class="container">
     <div class="title-page">
-      <h1>Upcoming Events</h1>
+      <h1>Events</h1>
     </div>
 
     <div class="content">
       <div class="dashboard-column">
         <div class="upcoming-section">
           <div class="event-header">
-            <h2><i class="fas fa-bullhorn section-icon"></i> Announcements</h2>
+            <h2><i class="fas fa-bullhorn section-icon"></i> Upcoming Events</h2>
             <button class="create-button">Create Post</button>
           </div>
           <div class="horizontal-scroll">
@@ -82,7 +82,7 @@ export default {
     return {
       selectedItem: null,
       currentPage: 1,
-      itemsPerPage: 10,
+      itemsPerPage: 8,
       events: Array.from({ length: 19 }, (_, i) => ({
         title: `Event ${String.fromCharCode(65 + i)}`,
         img: placeholderImage,
@@ -165,15 +165,10 @@ export default {
 
 .horizontal-scroll {
   display: grid;
-  grid-auto-flow: column;
-  grid-template-rows: repeat(2, 1fr);
-  grid-auto-columns: minmax(250px, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
-  overflow-x: auto;
-  padding-bottom: 10px;
-  scrollbar-width: thin;
-  scrollbar-color: #4764d9 transparent;
   max-width: 100%;
+  /* Remove overflow-x */
 }
 
 .horizontal-scroll::-webkit-scrollbar {
