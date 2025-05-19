@@ -4,8 +4,8 @@
       <div class="profile-wrapper">
         <img src="../assets/Sk_Logo.png" alt="Profile" class="profile-pic" />
         <div class="profile-info">
-          <div class="name">Ryan Joshua E. Bueno</div>
-          <div class="position">IT Intern</div>
+          <div class="name">Justine Santos</div>
+          <div class="position">SK Chairman</div>
         </div>
       </div>
       <div class="clock">{{ currentDate }}</div>
@@ -95,5 +95,4 @@ export default {
   color: #333;
   margin-right: 50px;
 }
-
 </style>
