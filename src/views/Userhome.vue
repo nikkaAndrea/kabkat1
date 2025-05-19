@@ -1,71 +1,72 @@
 <template>
   <div class="container">
     <div class="title-page">
-      <h1>Dashboard</h1>
+      <h1>One Matain, Galing ng Batang Matain!</h1>
+      <p class="subtitle">Stay updated with announcements and upcoming events.</p>
     </div>
 
     <div class="content">
       <div class="dashboard-column">
         <!-- Announcements Section -->
-        <div class="announcement-section">
+        <section class="announcement-section">
           <h2><i class="fas fa-bullhorn section-icon"></i> Announcements</h2>
           <div class="horizontal-scroll">
             <div
               class="poster-card"
               v-for="(announcement, index) in announcements"
-              :key="index"
+              :key="'a' + index"
               @click="openModal(announcement)"
             >
               <img
                 :src="announcement.img"
                 :alt="announcement.title"
                 class="poster-image"
+                @error="setFallback($event)"
               />
               <h4>{{ announcement.title }}</h4>
             </div>
           </div>
-        </div>
+        </section>
 
-        <!-- Upcoming Events Section -->
-        <div class="upcoming-section">
-          <h2>
-            <i class="fas fa-calendar-alt section-icon"></i> Upcoming Events
-          </h2>
+        <!-- Events Section -->
+        <section class="upcoming-section">
+          <h2><i class="fas fa-calendar-alt section-icon"></i> Upcoming Events</h2>
           <div class="horizontal-scroll">
             <div
               class="poster-card"
               v-for="(event, index) in events"
-              :key="index"
+              :key="'e' + index"
               @click="openModal(event)"
             >
-              <img :src="event.img" :alt="event.title" class="poster-image" />
+              <img
+                :src="event.img"
+                :alt="event.title"
+                class="poster-image"
+                @error="setFallback($event)"
+              />
               <h4>{{ event.title }}</h4>
             </div>
           </div>
-        </div>
+        </section>
       </div>
     </div>
 
     <!-- Modal -->
     <div class="modal-overlay" v-if="selectedItem" @click.self="closeModal">
       <div class="modal-content">
-        <span class="close-button" @click="closeModal">&times;</span>
-
+        <button class="close-button" @click="closeModal" aria-label="Close Modal">&times;</button>
         <div class="modal-body">
           <div class="modal-image-wrapper">
             <img
               :src="selectedItem.img"
               :alt="selectedItem.title"
               class="modal-image"
+              @error="setFallback($event)"
             />
           </div>
           <div class="modal-text">
             <h3>{{ selectedItem.title }}</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. More
-              details about the item can be shown here. You can customize this
-              text dynamically if needed.
-            </p>
+            <p>{{ selectedItem.description || 'More details will be added soon. Stay tuned!' }}</p>
           </div>
         </div>
       </div>
@@ -81,12 +82,14 @@ export default {
   data() {
     return {
       selectedItem: null,
-      announcements: Array.from({ length: 9 }, (_, i) => ({
+      announcements: Array.from({ length: 5 }, (_, i) => ({
         title: `Announcement ${i + 1}`,
+        description: "This is a brief description of the announcement.",
         img: placeholderImage,
       })),
-      events: Array.from({ length: 9 }, (_, i) => ({
+      events: Array.from({ length: 5 }, (_, i) => ({
         title: `Event ${String.fromCharCode(65 + i)}`,
+        description: "Event details go here. You can customize this content.",
         img: placeholderImage,
       })),
     };
@@ -97,6 +100,9 @@ export default {
     },
     closeModal() {
       this.selectedItem = null;
+    },
+    setFallback(event) {
+      event.target.src = placeholderImage;
     },
   },
 };
@@ -111,7 +117,19 @@ export default {
 }
 
 .title-page {
-  color: #4764d9;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+}
+
+.title-page h1 {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #555;
+  margin-top: 5px;
 }
 
 .content {
@@ -121,14 +139,14 @@ export default {
 .dashboard-column {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 40px;
 }
 
 .announcement-section,
 .upcoming-section {
   background-color: #fff;
-  padding: 0 20px 15px 20px;
-  border-radius: 5px;
+  padding: 20px;
+  border-radius: 8px;
   border: 1px solid #ccc;
 }
 
@@ -136,7 +154,7 @@ export default {
 .upcoming-section h2 {
   color: #4764d9;
   margin-bottom: 15px;
-  font-size: 18px;
+  font-size: 20px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -165,19 +183,19 @@ export default {
 }
 
 .poster-card {
-  min-width: 250px;
+  min-width: 220px;
   border-radius: 8px;
-  padding: 15px;
+  padding: 12px;
   flex-shrink: 0;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   background-color: #f5f7ff;
-  box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
-  margin-bottom: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .poster-card:hover {
-  transform: scale(1.05);
+  transform: scale(1.04);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .poster-image {
@@ -189,9 +207,9 @@ export default {
 }
 
 .poster-card h4 {
-  margin-top: 0;
-  margin-bottom: 8px;
+  font-size: 16px;
   color: #295f98;
+  margin: 0;
 }
 
 .modal-overlay {
@@ -200,39 +218,48 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 999;
 }
+
 .modal-content {
   background-color: white;
   padding: 30px;
   border-radius: 10px;
   width: 90%;
-  max-width: 700px;
+  max-width: 750px;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .modal-body {
   display: flex;
   gap: 20px;
-  align-items: flex-start;
   flex-wrap: wrap;
 }
 
 .modal-image-wrapper {
   flex: 1 1 50%;
 }
+
 .modal-image {
   width: 100%;
   height: auto;
   border-radius: 8px;
-  object-fit: cover;
 }
 
 .modal-text {
@@ -241,31 +268,24 @@ export default {
   overflow-y: auto;
   padding-right: 10px;
 }
-.modal-text::-webkit-scrollbar {
-  width: 6px;
-}
-
-.modal-text::-webkit-scrollbar-thumb {
-  background-color: #4764d9;
-  border-radius: 3px;
-}
 
 .modal-text h3 {
-  margin-top: 0;
   color: #295f98;
+  margin: 0 0 10px;
 }
 
 .modal-text p {
   font-size: 15px;
   color: #444;
-  margin-top: 10px;
 }
 
 .close-button {
   position: absolute;
   top: 10px;
   right: 15px;
-  font-size: 24px;
+  background: none;
+  border: none;
+  font-size: 28px;
   font-weight: bold;
   color: #333;
   cursor: pointer;
