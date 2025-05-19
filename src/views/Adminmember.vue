@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="title-page">
-      <h1>User Managements</h1>
+      <h1>KK Members List</h1>
     </div>
 
     <div class="content">
