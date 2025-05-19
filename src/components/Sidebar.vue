@@ -5,14 +5,14 @@
         <router-link to="/Userhome" custom v-slot="{ navigate, isActive }">
           <li :class="['menu-item', { active: isActive }]" @click="navigate">
             <i class="fas fa-home"></i>
-            <span>Dashboard</span>
+            <span>Home</span>
           </li>
         </router-link>
 
         <router-link to="/Usercommunity" custom v-slot="{ navigate, isActive }">
           <li :class="['menu-item', { active: isActive }]" @click="navigate">
             <i class="fas fa-chart-pie"></i>
-            <span>Community</span>
+            <span>Community Concern</span>
           </li>
         </router-link>
 
