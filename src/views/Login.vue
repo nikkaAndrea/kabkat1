@@ -42,15 +42,15 @@
           </p>
         </div>
 
-        <div class="logos">
-          <img class="nyc-logo" alt="NYC Logo" src="/src/assets/NYC_Logo.png" />
-          <img class="matain-logo" alt="Matain Logo" src="/src/assets/Matain_Logo.png" />
+        <div class="logo">
           <img class="sk-logo" alt="Sangguniang Kabataan Logo" src="/src/assets/Sk_Logo.png" />
         </div>
 
         <p class="welcome-text">
-          Welcome, <br />
-          Kabataan ng Barangay Matain!
+          Welcome, Kabataan ng Barangay Matain!
+        </p>
+        <p class="one-matain">
+          One Matain, Galing ng Batang Matain.
         </p>
       </div>
     </div>
@@ -144,13 +144,12 @@ export default {
 }
 
 .background-wrapper {
-  background-color: #f5f3c7;
+  background: rgba(71, 100, 217, 0.80);
   height: 100vh;
   width: 100%;
 }
 
 .background {
-  background-image: url(@/assets/Login_Background.jpg);
   background-position: center;
   background-size: cover;
   height: 100vh;
@@ -250,7 +249,7 @@ export default {
   text-decoration: underline;
 }
 
-.logos {
+.logo {
   position: absolute;
   top: 35px;
   right: 40px;
@@ -258,8 +257,6 @@ export default {
   gap: 20px;
 }
 
-.nyc-logo,
-.matain-logo,
 .sk-logo {
   width: 80px;
   height: 80px;
@@ -269,11 +266,22 @@ export default {
   position: absolute;
   top: 15px;
   left: 50px;
-  font-weight: bold;
-  color: #000;
+  color: white;
   font-family: Lobster;
-  font-size: 42px;
-  width: 813px;
+  font-size: 45px;
   text-align: left;
+  width: 813px;
+  height: 129px;
+  flex-shrink: 0;
+}
+
+.one-matain {
+  position: absolute;
+  top: 100px; /* moved lower to appear under welcome-text */
+  left: 50px;
+  font-size: 25px;
+  text-align: left;
+  flex-shrink: 0;
+  color: black;
 }
 </style>
