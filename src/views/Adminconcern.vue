@@ -104,7 +104,7 @@ export default {
   color: #4764d9;
 }
 .content {
-  width: 97%;
+  width: 95%;
 }
 .concern-list {
   display: grid;

@@ -120,10 +120,10 @@ export default {
 
 .content {
   width: 94%;
-  background-color:  #fff;
-  border: 1px solid #ccc;
+  border-radius: 8px;
+  border: 2.7px solid #0038A8;
+  background: #FFF;
   padding: 20px;
-  border-radius: 5px;
 }
 
 .search-bar {

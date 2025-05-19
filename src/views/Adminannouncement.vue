@@ -194,6 +194,9 @@ methods: {
 
 .content {
   width: 97%;
+  border-radius: 8px;
+  border: 2.5px solid #0038A8;
+  background: #FFF;
 }
 
 .dashboard-column {
