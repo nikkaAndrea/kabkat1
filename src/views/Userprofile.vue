@@ -164,12 +164,12 @@ export default {
 
 .content {
   margin-top: 20px;
-  background-color: #fff;
-  border-radius: 5px;
   width: 93%;
   min-height: 200px;
   padding: 30px;
-  border: 1px solid #ccc;
+  border-radius: 8px;
+  border: 2.7px solid #0038A8;
+  background: #FFF;
 }
 
 .profile-container {

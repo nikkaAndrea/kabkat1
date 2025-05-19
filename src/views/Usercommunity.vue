@@ -86,9 +86,9 @@ export default {
 }
 
 .form-card {
-  background-color: #fff;
-  border: 1px solid #ccc;
   border-radius: 8px;
+  border: 2.7px solid #0038A8;
+  background: #FFF;
   padding: 25px;
   max-width: 700px;
   width: 100%;
@@ -119,17 +119,17 @@ export default {
 
 .button-wrapper {
   display: flex;
-  justify-content: center;
+  justify-content: right;
   margin-top: 20px;
 }
 
 .submit-button {
-  padding: 12px 30px;
-  font-size: 16px;
+  background-color: #4763d9;
+  color: #fff;
+  padding: 15px 25px;
+  font-size: 14px;
   border: none;
-  background-color: #4764d9;
-  color: white;
-  border-radius: 6px;
+  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }

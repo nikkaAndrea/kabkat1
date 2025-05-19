@@ -144,10 +144,10 @@ export default {
 
 .announcement-section,
 .upcoming-section {
-  background-color: #fff;
-  padding: 20px;
   border-radius: 8px;
-  border: 1px solid #ccc;
+  border: 2.7px solid #0038A8;
+  background: #FFF;
+  padding: 20px;
 }
 
 .announcement-section h2,
