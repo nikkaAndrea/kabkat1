@@ -33,17 +33,20 @@ export default {
     const isLoggedIn = ref(localStorage.getItem("isLoggedIn") === "true");
     const isAdmin = ref(localStorage.getItem("accountType") === "admin");
 
-    // Watch for changes in localStorage and update state
+    const publicPaths = ["/login", "/register"];
+
     watchEffect(() => {
       isLoggedIn.value = localStorage.getItem("isLoggedIn") === "true";
       isAdmin.value = localStorage.getItem("accountType") === "admin";
 
-      if (!isLoggedIn.value && router.currentRoute.value.path !== "/login") {
+      const currentPath = router.currentRoute.value.path;
+
+      // Only redirect if NOT logged in and not on a public page
+      if (!isLoggedIn.value && !publicPaths.includes(currentPath)) {
         router.push("/login");
       }
     });
 
-    // Listen to storage updates (multi-tab sync)
     window.addEventListener("storage", () => {
       isLoggedIn.value = localStorage.getItem("isLoggedIn") === "true";
       isAdmin.value = localStorage.getItem("accountType") === "admin";
