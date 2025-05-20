@@ -47,8 +47,8 @@ export default {
 
 .container {
   margin-left: 18%;
-  margin-top: 100px;
-  padding: 0 20px 50px;
+  margin-top: 120px;
+  padding-bottom: 50px;
   min-height: 100vh;
 }
 
