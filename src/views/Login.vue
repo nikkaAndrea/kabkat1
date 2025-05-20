@@ -1,5 +1,6 @@
 <template>
   <div class="login-page">
+    <LoginHeader />
     <div class="background-wrapper">
       <div class="background">
         <div class="login-box">
@@ -42,24 +43,21 @@
           </p>
         </div>
 
-        <div class="logo">
-          <img class="sk-logo" alt="Sangguniang Kabataan Logo" src="/src/assets/Sk_Logo.png" />
-        </div>
-
-        <p class="welcome-text">
-          Welcome, Kabataan ng Barangay Matain!
-        </p>
-        <p class="one-matain">
-          One Matain, Galing ng Batang Matain.
-        </p>
+        <p class="welcome-text">Welcome, Kabataan ng Barangay Matain!</p>
+        <p class="one-matain">One Matain, Galing ng Batang Matain.</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import LoginHeader from "@/components/LoginHeader.vue";
+
 export default {
   name: "Login",
+  components: {
+    LoginHeader,
+  },
   data() {
     return {
       email: "",
@@ -89,7 +87,6 @@ export default {
         return;
       }
 
-      // Check for admin credentials
       if (
         this.email === this.staticAdmin.email &&
         this.password === this.staticAdmin.password
@@ -97,18 +94,14 @@ export default {
         localStorage.setItem("isLoggedIn", "true");
         localStorage.setItem("accountType", "admin");
 
-        if (this.rememberMe) {
-          localStorage.setItem("rememberedEmail", this.email);
-        } else {
-          localStorage.removeItem("rememberedEmail");
-        }
+        this.rememberMe
+          ? localStorage.setItem("rememberedEmail", this.email)
+          : localStorage.removeItem("rememberedEmail");
 
-        // Redirect to admin landing page
         this.$router.push("/admindashboard");
         return;
       }
 
-      // Check for user credentials
       if (
         this.email === this.staticUser.email &&
         this.password === this.staticUser.password
@@ -116,18 +109,14 @@ export default {
         localStorage.setItem("isLoggedIn", "true");
         localStorage.setItem("accountType", "user");
 
-        if (this.rememberMe) {
-          localStorage.setItem("rememberedEmail", this.email);
-        } else {
-          localStorage.removeItem("rememberedEmail");
-        }
+        this.rememberMe
+          ? localStorage.setItem("rememberedEmail", this.email)
+          : localStorage.removeItem("rememberedEmail");
 
-        // Redirect to user landing page
         this.$router.push("/home");
         return;
       }
 
-      // Invalid credentials
       alert("Invalid email or password.");
     },
   },
@@ -136,22 +125,19 @@ export default {
 
 <style scoped>
 .login-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
   width: 100%;
 }
 
 .background-wrapper {
-  background: rgba(71, 100, 217, 0.80);
+  background: linear-gradient(rgb(91, 83, 180), rgb(248, 250, 158)),
+              url("@/assets/bg1.jpg") no-repeat center center;
+  background-size: cover;
   height: 100vh;
   width: 100%;
 }
 
 .background {
-  background-position: center;
-  background-size: cover;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -164,7 +150,7 @@ export default {
   border-radius: 12px;
   padding: 30px;
   width: 20%;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  box-shadow: 0 2px 8px rgba(99, 99, 99, 0.2);
   text-align: center;
 }
 
@@ -185,20 +171,16 @@ export default {
 .input-group {
   display: flex;
   align-items: center;
-  background-color: white;
   border-left: 5px solid #1c54a1;
   border-radius: 3px;
-  overflow: hidden;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(99, 99, 99, 0.2);
 }
 
 .input-group .icon {
   padding: 10px;
   color: #ccc;
   font-size: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin-left: 10px;
 }
 
@@ -208,7 +190,6 @@ export default {
   border: none;
   outline: none;
   font-size: 14px;
-  border-radius: 0;
 }
 
 .remember-me {
@@ -266,22 +247,17 @@ export default {
   position: absolute;
   top: 15px;
   left: 50px;
-  color: white;
+  color: black;
   font-family: Lobster;
   font-size: 45px;
-  text-align: left;
   width: 813px;
-  height: 129px;
-  flex-shrink: 0;
 }
 
 .one-matain {
   position: absolute;
-  top: 100px; /* moved lower to appear under welcome-text */
+  top: 100px;
   left: 50px;
   font-size: 25px;
-  text-align: left;
-  flex-shrink: 0;
   color: black;
 }
 </style>
