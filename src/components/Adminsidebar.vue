@@ -3,10 +3,19 @@
     <div class="sidebar">
 
       <ul class="menu">
+        <!-- existing links -->
+
         <router-link to="/admindashboard" custom v-slot="{ navigate, isActive }">
           <li :class="['menu-item', { active: isActive }]" @click="navigate">
             <i class="fas fa-tachometer-alt"></i>
             <span>KK Dashboard</span>
+          </li>
+        </router-link>
+        
+        <router-link to="/skofficials" custom v-slot="{ navigate, isActive }">
+          <li :class="['menu-item', { active: isActive }]" @click="navigate">
+            <i class="fas fa-user-tie"></i>
+            <span>SK Officials</span>
           </li>
         </router-link>
 
@@ -17,7 +26,7 @@
           </li>
         </router-link>
 
-        <router-link to="/adminaccouncement" custom v-slot="{ navigate, isActive }">
+        <router-link to="/adminannouncement" custom v-slot="{ navigate, isActive }">
           <li :class="['menu-item', { active: isActive }]" @click="navigate">
             <i class="fas fa-bullhorn"></i>
             <span>Announcement</span>

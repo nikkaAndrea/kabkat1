@@ -64,10 +64,7 @@ export default {
 .container {
   margin-left: 18%;
   margin-top: 120px;
-  padding-bottom: 50px;
   min-height: 100vh;
-  padding-right: 20px;
-  color: #4764d9;
 }
 
 .title-page {
@@ -75,10 +72,6 @@ export default {
   margin-bottom: 20px;
 }
 
-.title-page h1 {
-  font-size: 28px;
-  margin-bottom: 5px;
-}
 
 .subtitle {
   font-size: 16px;

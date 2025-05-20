@@ -9,23 +9,25 @@ import Adminannouncement from "./views/Adminannouncement.vue";
 import Adminevents from "./views/Adminevents.vue";
 import Adminconcern from "./views/Adminconcern.vue";
 import Adminmanagement from "./views/Adminmanagement.vue";
+import SKOfficials from "./views/SKOfficials.vue";  // Added import
 
 const routes = [
   { path: '/', component: Login }, 
   { path: '/login', component: Login },
 
-  // Router ng User
+  //User
   { path: '/Userhome', component: Userhome },
   { path: '/Usercommunity', component: Usercommunity },
   { path: '/Userprofile', component: Userprofile },
 
-  // Router ng Admin
+  //Admin
   { path: '/admindashboard', component: Admindashboard },
   { path: '/adminmember', component: Adminmember },
-  { path: '/adminaccouncement', component: Adminannouncement },
+  { path: '/adminannouncement', component: Adminannouncement }, 
   { path: '/adminevents', component: Adminevents },
   { path: '/adminconcern', component: Adminconcern },
   { path: '/adminmanagement', component: Adminmanagement },
+  { path: '/skofficials', component: SKOfficials } 
 ];
 
 const router = createRouter({

@@ -4,6 +4,13 @@
       <h1>KK Members List</h1>
     </div>
 
+    <!-- Totals display -->
+    <div class="totals-container">
+      <p><strong>Total KK Members:</strong> {{ totalMembers }}</p>
+      <p><strong>Female Members:</strong> {{ totalFemale }}</p>
+      <p><strong>Male Members:</strong> {{ totalMale }}</p>
+    </div>
+
     <div class="content">
       <div class="search-bar-container">
         <input
@@ -36,15 +43,17 @@
       </table>
 
       <div class="pagination">
-        <button 
-          :disabled="currentPage === 1" 
-          @click="currentPage--">
+        <button
+          :disabled="currentPage === 1"
+          @click="currentPage--"
+        >
           Previous
         </button>
         <span>Page {{ currentPage }} of {{ totalPages }}</span>
-        <button 
-          :disabled="currentPage === totalPages" 
-          @click="currentPage++">
+        <button
+          :disabled="currentPage === totalPages"
+          @click="currentPage++"
+        >
           Next
         </button>
       </div>
@@ -52,9 +61,6 @@
   </div>
 </template>
 
-
-
-  
 <script>
 export default {
   name: "Adminmember",
@@ -64,7 +70,6 @@ export default {
       currentPage: 1,
       usersPerPage: 10,
       users: [
-        // Add more mock users for pagination demo
         { name: "Alice Santos", gender: "Female", age: 28, address: "123 Main St", email: "alice@example.com" },
         { name: "John Cruz", gender: "Male", age: 35, address: "456 Elm St", email: "john@example.com" },
         { name: "Maria Dela Rosa", gender: "Female", age: 22, address: "789 Pine Ave", email: "maria@example.com" },
@@ -95,18 +100,27 @@ export default {
       const end = start + this.usersPerPage;
       return this.filteredUsers.slice(start, end);
     },
+
+    // Totals for all users (ignores search filter)
+    totalMembers() {
+      return this.users.length;
+    },
+    totalFemale() {
+      return this.users.filter(user => user.gender.toLowerCase() === "female").length;
+    },
+    totalMale() {
+      return this.users.filter(user => user.gender.toLowerCase() === "male").length;
+    },
   },
   watch: {
     searchQuery() {
-      this.currentPage = 1; // Reset to page 1 on new search
+      this.currentPage = 1; // Reset page on new search
     },
   },
 };
 </script>
 
-
-  
-  <style scoped>
+<style scoped>
 .container {
   margin-left: 18%;
   margin-top: 120px;
@@ -116,6 +130,17 @@ export default {
 
 .title-page {
   color: #4764d9;
+}
+
+.totals-container {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  color: #333;
+  display: flex;
+  gap: 40px;
+}
+.totals-container p {
+  margin: 0;
 }
 
 .content {
@@ -162,6 +187,7 @@ export default {
 .user-table tr:hover {
   background-color: #f1f1f1;
 }
+
 .pagination {
   margin-top: 20px;
   display: flex;
@@ -182,4 +208,4 @@ export default {
   background-color: #ccc;
   cursor: not-allowed;
 }
-  </style>
+</style>

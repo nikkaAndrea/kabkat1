@@ -4,7 +4,7 @@
       <div class="profile-wrapper">
         <img src="../assets/Sk_Logo.png" alt="Profile" class="profile-pic" />
         <div class="profile-info">
-          <div class="name">Justine E. Santos</div>
+          <div class="name">Barangay Matain SK Official</div>
         </div>
       </div>
       <div class="clock">{{ currentDate }}</div>

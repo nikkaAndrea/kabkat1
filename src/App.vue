@@ -1,11 +1,14 @@
 <template>
   <div :class="{ 'full-screen': !isLoggedIn }">
+    <!-- Show admin/user layout only when logged in -->
     <template v-if="isLoggedIn">
       <Adminheader v-if="isAdmin" />
       <Header v-else />
       <Adminsidebar v-if="isAdmin" />
       <Sidebar v-else />
     </template>
+
+    <!-- Always show router-view, but layout depends on login -->
     <router-view />
   </div>
 </template>
@@ -15,7 +18,7 @@ import Sidebar from "@/components/Sidebar.vue";
 import Adminsidebar from "@/components/Adminsidebar.vue";
 import Header from "@/components/Header.vue";
 import Adminheader from "@/components/Adminheader.vue";
-import { ref, watchEffect } from "vue";
+import { ref, watchEffect, onMounted } from "vue";
 import { useRouter } from "vue-router";
 
 export default {
@@ -30,15 +33,17 @@ export default {
     const isLoggedIn = ref(localStorage.getItem("isLoggedIn") === "true");
     const isAdmin = ref(localStorage.getItem("accountType") === "admin");
 
+    // Watch for changes in localStorage and update state
     watchEffect(() => {
       isLoggedIn.value = localStorage.getItem("isLoggedIn") === "true";
       isAdmin.value = localStorage.getItem("accountType") === "admin";
 
-      if (!isLoggedIn.value) {
+      if (!isLoggedIn.value && router.currentRoute.value.path !== "/login") {
         router.push("/login");
       }
     });
 
+    // Listen to storage updates (multi-tab sync)
     window.addEventListener("storage", () => {
       isLoggedIn.value = localStorage.getItem("isLoggedIn") === "true";
       isAdmin.value = localStorage.getItem("accountType") === "admin";
