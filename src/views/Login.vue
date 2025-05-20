@@ -3,6 +3,8 @@
     <LoginHeader />
     <div class="background-wrapper">
       <div class="background">
+        <img src="../assets/Sk_Logo.png" alt="Profile" class="background-image" />
+
         <div class="login-box">
           <h1 class="title">Please Login</h1>
 
@@ -130,8 +132,7 @@ export default {
 }
 
 .background-wrapper {
-  background: linear-gradient(rgb(91, 83, 180), rgb(248, 250, 158)),
-              url("@/assets/bg1.jpg") no-repeat center center;
+  background: linear-gradient(rgb(91, 83, 180), rgb(248, 250, 158));
   background-size: cover;
   height: 100vh;
   width: 100%;
@@ -152,6 +153,17 @@ export default {
   width: 20%;
   box-shadow: 0 2px 8px rgba(99, 99, 99, 0.2);
   text-align: center;
+  z-index: 2;
+}
+
+.background-image {
+  position: absolute;
+  top: 20%;
+  left: 70%;
+  width: 50%;
+  height: auto;
+  z-index: 10;
+  opacity: 0.5;
 }
 
 .title {

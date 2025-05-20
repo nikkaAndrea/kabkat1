@@ -47,7 +47,7 @@ export default {
   data() {
   return {
     currentPage: 1,
-    itemsPerPage: 8, // Updated from 6 to 10
+    itemsPerPage: 10,
     concerns: Array.from({ length: 15 }, (_, i) => ({
       title: `Concern #${i + 1}`,
       description: `This is a detailed description for community concern #${i + 1}.`,

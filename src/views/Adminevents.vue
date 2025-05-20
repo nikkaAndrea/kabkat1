@@ -109,7 +109,7 @@ export default {
       selectedItem: null,
       showAttendeesModal: false,
       currentPage: 1,
-      itemsPerPage: 8,
+      itemsPerPage: 10,
       events: Array.from({ length: 19 }, (_, i) => ({
         title: `Event ${String.fromCharCode(65 + i)}`,
         img: placeholderImage,

@@ -83,7 +83,7 @@ export default {
     return {
       selectedItem: null,
       currentPage: 1,
-      itemsPerPage: 8,
+      itemsPerPage: 10,
       announcements: Array.from({ length: 20 }, (_, i) => ({
         title: `Announcement ${i + 1}`,
         img: placeholderImage,
