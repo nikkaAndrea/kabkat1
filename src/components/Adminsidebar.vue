@@ -11,13 +11,6 @@
             <span>KK Dashboard</span>
           </li>
         </router-link>
-        
-        <router-link to="/skofficials" custom v-slot="{ navigate, isActive }">
-          <li :class="['menu-item', { active: isActive }]" @click="navigate">
-            <i class="fas fa-user-tie"></i>
-            <span>SK Officials</span>
-          </li>
-        </router-link>
 
         <router-link to="/adminmember" custom v-slot="{ navigate, isActive }">
           <li :class="['menu-item', { active: isActive }]" @click="navigate">

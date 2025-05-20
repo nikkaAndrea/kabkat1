@@ -7,29 +7,29 @@
     <div class="content">
       <div class="card-grid">
         <div
-          class="dashboard-card officials"
-          @click="goToOfficials"
-          @keydown.enter="goToOfficials"
-          @keydown.space.prevent="goToOfficials"
+          class="dashboard-card active-members"
+          @click="goToActiveMembers"
+          @keydown.enter="goToActiveMembers"
+          @keydown.space.prevent="goToActiveMembers"
           role="button"
           tabindex="0"
-          title="View detailed list of SK officials"
+          title="View active KK members"
         >
-          <h3><i class="fa-solid fa-user-tie"></i> Total SK Officials</h3>
-          <p>{{ animatedCounts.officials }}</p>
+          <h3><i class="fa-solid fa-user-check"></i> Active KK Members</h3>
+          <p>{{ animatedCounts.activeMembers }}</p>
         </div>
 
         <div
-          class="dashboard-card female"
-          @click="goToFemaleMembers"
-          @keydown.enter="goToFemaleMembers"
-          @keydown.space.prevent="goToFemaleMembers"
+          class="dashboard-card inactive-members"
+          @click="goToInactiveMembers"
+          @keydown.enter="goToInactiveMembers"
+          @keydown.space.prevent="goToInactiveMembers"
           role="button"
           tabindex="0"
-          title="View detailed list of KK Members"
+          title="View inactive KK members"
         >
-          <h3><i class="fa-solid fa-venus"></i> Total KK Members</h3>
-          <p>{{ animatedCounts.female }}</p>
+          <h3><i class="fa-solid fa-user-xmark"></i> Inactive KK Members</h3>
+          <p>{{ animatedCounts.inactiveMembers }}</p>
         </div>
 
         <div class="grid-break"></div>
@@ -83,17 +83,15 @@ export default {
   data() {
     return {
       counts: {
-        officials: 10,
-        female: 58,
-        male: 35,
+        activeMembers: 40,
+        inactiveMembers: 18,
         events: 3,
         announcements: 5,
         concerns: 8,
       },
       animatedCounts: {
-        officials: 0,
-        female: 0,
-        male: 0,
+        activeMembers: 0,
+        inactiveMembers: 0,
         events: 0,
         announcements: 0,
         concerns: 0,
@@ -119,22 +117,18 @@ export default {
       });
     },
 
-    goToOfficials() {
-      this.$router.push('/skofficials');
+    goToActiveMembers() {
+      this.$router.push('/adminmanagement?status=active');
     },
-
-    goToFemaleMembers() {
-      this.$router.push('/adminmember?gender=female');
+    goToInactiveMembers() {
+      this.$router.push('/adminmanagement?status=inactive');
     },
-
     goToEvents() {
       this.$router.push('/adminevents');
     },
-
     goToAnnouncements() {
       this.$router.push('/adminannouncement');
     },
-
     goToConcerns() {
       this.$router.push('/adminconcern');
     },
@@ -216,17 +210,12 @@ export default {
   width: 100%;
 }
 
-/* Optional category-specific background tones */
-.female {
-  background: linear-gradient(135deg, #e6f0ff, #d6e0ff);
+.active-members {
+  background: linear-gradient(135deg, #e6ffe6, #ccffcc);
 }
 
-.male {
-  background: linear-gradient(135deg, #e0f7ff, #c5ebff);
-}
-
-.officials {
-  background: linear-gradient(135deg, #e8fff5, #d2ffec);
+.inactive-members {
+  background: linear-gradient(135deg, #fff0f0, #ffcccc);
 }
 
 .events {

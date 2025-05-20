@@ -16,7 +16,6 @@ import Adminannouncement from "./views/Adminannouncement.vue";
 import Adminevents from "./views/Adminevents.vue";
 import Adminconcern from "./views/Adminconcern.vue";
 import Adminmanagement from "./views/Adminmanagement.vue";
-import SKOfficials from "./views/SKOfficials.vue";
 
 const routes = [
   { path: "/", component: Login },
@@ -35,7 +34,6 @@ const routes = [
   { path: "/adminevents", component: Adminevents },
   { path: "/adminconcern", component: Adminconcern },
   { path: "/adminmanagement", component: Adminmanagement },
-  { path: "/skofficials", component: SKOfficials },
 ];
 
 const router = createRouter({

@@ -4,6 +4,18 @@
       <h1>User Management</h1>
     </div>
 
+    <div class="user-stats">
+      <p><strong>Total Users: </strong> {{ users.length }}</p>
+      <p>
+        <strong>Active Users: </strong>
+        <span class="active-count">{{ users.filter(user => user.active).length }}</span>
+      </p>
+      <p>
+        <strong>Inactive Users: </strong>
+        <span class="inactive-count">{{ users.filter(user => !user.active).length }}</span>
+      </p>
+    </div>
+
     <div class="content">
       <div class="user-management">
         <div class="header">
@@ -60,7 +72,6 @@
       </div>
     </div>
 
-    <!-- User Modal -->
     <div
       class="modal-overlay"
       v-if="showModal"
@@ -124,7 +135,7 @@ export default {
         { id: 8, username: "heidi", email: "heidi@example.com", active: false },
         { id: 9, username: "ivan", email: "ivan@example.com", active: true },
         { id: 10, username: "judy", email: "judy@example.com", active: true },
-        { id: 11, username: "karen", email: "karen@example.com", active: false },
+        { id: 11, username: "karen", email: "karen@example.com", active: false }
       ],
       currentPage: 1,
       itemsPerPage: 10,
@@ -173,13 +184,11 @@ export default {
     },
     submitUser() {
       if (this.editingUser) {
-        // Update existing user
         const index = this.users.findIndex((u) => u.id === this.editingUser.id);
         if (index !== -1) {
           this.users.splice(index, 1, { ...this.userForm });
         }
       } else {
-        // Add new user
         const newId = this.users.length
           ? Math.max(...this.users.map((u) => u.id)) + 1
           : 1;
@@ -214,6 +223,29 @@ export default {
 .title-page {
   color: #4764d9;
 }
+
+.user-stats {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  color: #333;
+  display: flex;
+  gap: 40px;
+}
+
+.user-stats p {
+  margin: 0;
+}
+
+.active-count {
+  color: #4caf50; 
+  font-weight: bold;
+}
+
+.inactive-count {
+  color: #f44336; 
+  font-weight: bold;
+}
+
 
 .content {
   width: 94%;
@@ -330,43 +362,37 @@ export default {
 
 .pagination-controls button:disabled {
   background-color: #ccc;
-  cursor: not-allowed;
+cursor: not-allowed;
 }
 
+/* Modal Styles */
 .modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.5);
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 9999;
 }
 
 .modal-content {
-  background-color: white;
-  padding: 25px 30px;
-  border-radius: 8px;
-  width: 350px;
-  max-width: 90vw;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  position: relative;
+background-color: white;
+padding: 30px;
+border-radius: 10px;
+width: 400px;
+position: relative;
 }
 
 .close-button {
-  position: absolute;
-  right: 15px;
-  top: 12px;
-  font-size: 22px;
-  cursor: pointer;
-  color: #999;
-}
-
-.close-button:hover {
-color: #4764d9;
+position: absolute;
+top: 10px;
+right: 15px;
+font-size: 28px;
+cursor: pointer;
 }
 
 .form-group {
@@ -375,30 +401,27 @@ margin-bottom: 15px;
 
 .form-group label {
 display: block;
-margin-bottom: 6px;
 font-weight: 600;
+margin-bottom: 5px;
 }
 
 .form-group input[type="text"],
 .form-group input[type="email"] {
 width: 100%;
-padding: 10px 12px;
+padding: 10px;
 border: 1px solid #ccc;
-border-radius: 4px;
-}
-
-.form-group input[type="checkbox"] {
-margin-right: 6px;
+border-radius: 5px;
 }
 
 .submit-btn {
 background-color: #4764d9;
 color: white;
 border: none;
-padding: 12px 18px;
+padding: 12px 20px;
 width: 100%;
-border-radius: 5px;
+border-radius: 6px;
 cursor: pointer;
+font-weight: 600;
 font-size: 16px;
 }
 
@@ -406,6 +429,3 @@ font-size: 16px;
 background-color: #3752b3;
 }
 </style>
-
-
-
