@@ -25,7 +25,7 @@
       <div class="form-section">
         <div class="form-group row-span">
           <label>Fullname</label>
-          <input type="text" v-model="user.fullname" placeholder="Enter old password" />
+          <input type="text" v-model="user.fullname" placeholder="Enter full name" />
         </div>
 
         <div class="form-group row-span">
@@ -45,9 +45,9 @@
 
         <div class="form-group">
           <label>Age</label>
-          <input type="number" v-model="user.age" />
+          <input type="number" v-model="user.age" min="15" max="30" />
         </div>
-
+        
         <div class="form-group">
           <label>Civil Status</label>
           <select v-model="user.civilStatus">
@@ -101,7 +101,7 @@ export default {
         email: "",
         address: "",
         gender: "",
-        age: 30,
+        age: "",
         civilStatus: "",
       },
       passwords: {
@@ -129,24 +129,28 @@ export default {
       this.user.avatar = defaultAvatar;
     },
     saveChanges() {
-      // Placeholder: Implement form validation and save logic here
-      if (
-        this.passwords.newPassword &&
-        this.passwords.newPassword !== this.passwords.confirmPassword
-      ) {
-        alert("New password and confirm password do not match.");
-        return;
-      }
+    if (this.user.age < 15 || this.user.age > 30) {
+      alert("Age must be between 15 and 30.");
+      return;
+    }
 
-      // Here you can send 'user' and 'passwords' data to your API/backend
+    if (
+      this.passwords.newPassword &&
+      this.passwords.newPassword !== this.passwords.confirmPassword
+    ) {
+      alert("New password and confirm password do not match.");
+      return;
+    }
 
-      alert("Changes saved successfully!");
-      
-      // Clear password fields after saving
-      this.passwords.oldPassword = "";
-      this.passwords.newPassword = "";
-      this.passwords.confirmPassword = "";
-    },
+    // Here you can send 'user' and 'passwords' data to your API/backend
+
+    alert("Changes saved successfully!");
+
+    // Clear password fields after saving
+    this.passwords.oldPassword = "";
+    this.passwords.newPassword = "";
+    this.passwords.confirmPassword = "";
+  },
   },
 };
 </script>
